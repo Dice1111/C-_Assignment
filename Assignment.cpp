@@ -6,7 +6,6 @@
 using namespace std;
 
 class product {
-
 private:
 	string pID;
 protected:
@@ -20,28 +19,31 @@ public:
 	virtual void display();
 };
 
-// inheritance polymorphism
-  
 
-class Electronics: public product { //derived class
+// inheritance polymorphism
+class Electronics : public product { //derived class
 	void display() {
-		cout << endl << "Electronic product: Printer,Hair_dryer,Vacuum_Cleaner,etc ";
+		cout << endl << "Electronic product:";
 	}
 };
-class Household: public product {  //derived class
+
+class Household : public product {  //derived class
 	void display() {
-		cout << endl << "Household products: Dishwasher,Washing_Machine,Refrigerator,etc";
+		cout << endl << "Household products:";
 	}
 };
-class Furniture: public product {  //derived class
+
+class Furniture : public product {  //derived class
 	void display() {
 		cout << endl << "Furniture: Couch,Shelvesardrobe,etc ";
 	}
 };
 
+
 void product::display() {
 	cout << "____________________";
 }
+
 void product::input_product() {
 	cout << "(1)Please write down the product name\n ";
 	cin >> pName;
@@ -55,16 +57,12 @@ void product::input_product() {
 	cout << "(4)Please write down the quantity on hand of the product\n";
 	cin >> quantity;
 }
-
-
 void product::display_product() {
 	cout << "Product Name :" << pName << endl;
 	cout << "Product ID :" << pID << endl;
 	cout << "Product Category :" << pCategory << endl;
 	cout << "Quantity on hand:" << quantity << endl;
 }
-
-
 void product::writeRecord() {
 	ofstream myfile("product.txt", ios::app);
 
@@ -87,6 +85,7 @@ void product::editRecord(string search) {
 	if (!inFile) {
 		cout << "Unable to open the file" << endl;
 		//exit(1); 
+	
 	}
 
 	while (inFile.good()) {
@@ -109,8 +108,9 @@ void product::editRecord(string search) {
 				myArray[i] = testStr;
 				i++;
 			}
+			
 			for (int i=0 ;i<4; i++){
-			cout<< endl<<myArray [i]<<endl;}
+			cout<< endl<<myArray[i]<<endl;}
 			
 			char control;
 			cout << "1 for name" << endl;
@@ -130,8 +130,6 @@ void product::editRecord(string search) {
 			break;
 		}
 	}
-
-
 	if (control == false)cout << " not found" << endl;
 	ifstream file;
 	ofstream outfile;
@@ -155,7 +153,8 @@ void product::editRecord(string search) {
 
 
 
-int main(){
+int main()
+{
 	void addProduct();
 	void displayProduct();
 	void editProduct();
@@ -207,14 +206,12 @@ int main(){
 	} while (choice != '5');
 	return 0;
 }
-
 void addProduct() {
 	product p;
 	cout << "Input data" << endl;
 	p.input_product();
 	p.writeRecord();
 }
-
 void displayProduct() {
 	string data, temp[4];
 	ifstream myfile;
@@ -228,11 +225,15 @@ void displayProduct() {
 			myfile >> temp[i];
 
 		if (myfile.eof()) break;
+
 		cout << "__________________________________" << endl;
-		cout << "Name ::"<<right << setw(0) << endl;
-		cout << "ID   :: "<<right << setw(0) << endl;
-		cout << "Type :: "<<right << setw(0)  << endl;
+		cout << "Name ::"<<temp[0]<< endl;
+		cout << "ID   ::"<<temp[1] << endl;
+		cout << "Type ::"<<temp[3]  << endl;
+		//cout << "---------------------------------" << endl;
 	}
+
+
 
 	myfile.close();
 }
